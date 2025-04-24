@@ -1,11 +1,10 @@
-﻿// @ts-ignore
-import http from 'http';
+﻿import * as http from 'http';
 
 function main() {
     const hostname = '0.0.0.0';
     const port = process.env.PING_LISTEN_PORT ? parseInt(process.env.PING_LISTEN_PORT) : 8000;
 
-    const server = http.createServer((req: { url: string; method: string; rawHeaders: any; }, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; end: (arg0: string) => void; }) => {
+    const server = http.createServer((req, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; end: (arg0: string) => void; }) => {
         if (req.url === '/ping' && req.method === 'GET') {
             let json = JSON.stringify(req.rawHeaders);
 
